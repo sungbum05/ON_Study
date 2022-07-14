@@ -13,6 +13,7 @@ enum EnemyTierList // 몬스터 티어
 [System.Serializable]
 public class Monster : MonoBehaviour
 {
+    [Header("몬스터_공유 속성")]
     [SerializeField] private int hp; // 프로퍼티지만 확인하기 위해
     public int HP { 
         get 
@@ -31,17 +32,27 @@ public class Monster : MonoBehaviour
 
     [SerializeField] private EnemyTierList EnemyTier;
 
+    [SerializeField] protected GameObject EnemyBullet;
     [SerializeField] protected int AttackPower = 0;
-    [SerializeField] protected float AttakDelay = 0f;
+    [SerializeField] protected float MaxAttakDelay = 1f;
+    [SerializeField] protected float CurAttakDelay = 0f;
 
     protected virtual void Awake()
     {
         UnitSetting();
+        StartCoroutine(AttckPatton());
     }
 
     protected virtual void UnitSetting()
     {
         HP = 100 / (int)EnemyTier;
         AttackPower = 100 / (int)EnemyTier;
+
+        CurAttakDelay = MaxAttakDelay;
+    }
+
+    protected virtual IEnumerator AttckPatton()
+    {
+        yield return null;
     }
 }

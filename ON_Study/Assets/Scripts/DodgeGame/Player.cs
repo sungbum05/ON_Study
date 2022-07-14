@@ -53,8 +53,6 @@ public class Player : MonoBehaviour
         #endregion 
         // -1.0f, 0, 1.0f
 
-        Debug.Log($"{x},{y}");
-
         this.gameObject.transform.position += new Vector3(x, y, 0) * Time.deltaTime * Speed;
 
         this.gameObject.transform.position = new Vector3(Mathf.Clamp(this.gameObject.transform.position.x, BorderMinPos.x, BorderMaxPos.x),
