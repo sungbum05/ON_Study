@@ -1084,8 +1084,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   EnemyTier: 2
+  EnemyBullet: {fileID: 0}
   AttackPower: 0
-  AttakDelay: 0
+  MaxAttakDelay: 1
+  CurAttakDelay: 0
+  RotationValue: {x: 0, y: 0, z: 0, w: 0}
+  SpinValue: 0
+  SpinSpeed: 0
+  AttackSpeed: 0
+  AttackNumber: 0
+  SpinDir: 0
 --- !u!212 &1033005590
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1233,8 +1241,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   EnemyTier: 2
+  EnemyBullet: {fileID: 0}
   AttackPower: 0
-  AttakDelay: 0
+  MaxAttakDelay: 1
+  CurAttakDelay: 0
+  RotationValue: {x: 0, y: 0, z: 0, w: 0}
+  SpinValue: 0
+  SpinSpeed: 0
+  AttackSpeed: 0
+  AttackNumber: 0
+  SpinDir: 0
 --- !u!212 &1058143335
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1716,8 +1732,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   EnemyTier: 2
+  EnemyBullet: {fileID: 4085503894679268354, guid: c78c3017916f1574fb82fa6fe8fee374, type: 3}
   AttackPower: 0
-  AttakDelay: 0
+  MaxAttakDelay: 1
+  CurAttakDelay: 0
+  RotationValue: {x: 0, y: 0, z: 0, w: 0}
+  SpinValue: 0
+  SpinSpeed: 10
+  AttackSpeed: 1000
+  AttackNumber: 4
+  SpinDir: 1
 --- !u!50 &1282197232
 Rigidbody2D:
   serializedVersion: 4
@@ -2191,7 +2215,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595789583}
-  - component: {fileID: 1595789584}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -2217,32 +2240,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1595789584
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595789582}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 11.84, y: 4.78}
-  m_EdgeRadius: 0
 --- !u!1 &1653726182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,8 +2725,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   EnemyTier: 2
+  EnemyBullet: {fileID: 0}
   AttackPower: 0
-  AttakDelay: 0
+  MaxAttakDelay: 1
+  CurAttakDelay: 0
+  RotationValue: {x: 0, y: 0, z: 0, w: 0}
+  SpinValue: 0
+  SpinSpeed: 0
+  AttackSpeed: 0
+  AttackNumber: 0
+  SpinDir: 0
 --- !u!212 &2108654210
 SpriteRenderer:
   m_ObjectHideFlags: 0
