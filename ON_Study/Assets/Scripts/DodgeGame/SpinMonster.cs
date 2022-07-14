@@ -41,6 +41,13 @@ public class SpinMonster : Monster
         }
     }
 
+    protected override void UnitSetting()
+    {
+        base.UnitSetting();
+
+        AttackPower = 10;
+    }
+
     void FireBullet()
     {
         int AttackAngle = 0;
@@ -52,9 +59,10 @@ public class SpinMonster : Monster
 
             for (int i = 0; i < AttackNumber; i++)
             {
-                GameObject Bullet = Instantiate(EnemyBullet, this.gameObject.transform.position, Quaternion.Euler(0, 0, AttackAngle));
-                Debug.Log("Attack");
-                Bullet.gameObject.GetComponent<Rigidbody2D>().velocity = Bullet.gameObject.transform.up * 10.0f;
+                GameObject Bullet = Instantiate(EnemyBullet, this.gameObject.transform.position, Quaternion.Euler(0, 0, AttackAngle + this.gameObject.transform.eulerAngles.z));
+
+                Bullet.gameObject.GetComponent<Rigidbody2D>().velocity = (Bullet.gameObject.transform.right * 10.0f);
+                Bullet.gameObject.GetComponent<EnemyBullet>().AttackPower = this.AttackPower;
 
                 AttackAngle += 360 / AttackNumber;
             }
