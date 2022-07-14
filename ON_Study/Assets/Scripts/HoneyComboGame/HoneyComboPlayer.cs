@@ -9,12 +9,22 @@ public enum PlayerPosition
     Middle,
     Right
 }
+public enum MoveCompleatPosition 
+{
+    LeftCompleat,
+    RightCompleat = 2
+}
+
 
 public class HoneyComboPlayer : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Vector3[] playerMovePosition = new Vector3[3];
     [SerializeField] private Vector3 mousePos;
+    [SerializeField] private Vector3 readyDragMousePos;
+    [SerializeField] private GameObject playerObj;
+    public bool IsMoving;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -26,22 +36,59 @@ public class HoneyComboPlayer : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         CheckMousePos();
     }
+    private void ReMoving()
+    {
+        IsMoving = false;
+    }
     private void CheckMousePos()
     {
-        mousePos = cam.transform.position;                  
+        mousePos = Input.mousePosition;
+        if(Input.GetMouseButtonDown(0))
+           readyDragMousePos = mousePos;
+        //mousePos = cam.WorldToScreenPoint(mousePos);                  
     }
-    public void OnBeginDrag(PointerEventData eventData) //드래그 시 처음 한번 호출
+    private IEnumerator Moving()
     {
-        throw new System.NotImplementedException();
+        float targetXPos = 0;
+        if (readyDragMousePos.x < mousePos.x && playerObj.transform.position.x != playerMovePosition[(int)PlayerPosition.Right].x && !IsMoving)
+        {
+            IsMoving = true;
+            targetXPos = playerObj.transform.position.x + 1.5f;
+            while (playerObj.transform.position.x <= targetXPos)
+            {
+                print("실행");
+                playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos + 0.5f, -3.8f, 0), 0.005f);
+                yield return null;
+            }
+            playerObj.transform.position = new Vector3(targetXPos, -3.8f, 0);
+            ReMoving();
+        }
+        else if (readyDragMousePos.x > mousePos.x && playerObj.transform.position.x != playerMovePosition[(int)PlayerPosition.Left].x && !IsMoving)
+        {
+            IsMoving = true;
+            targetXPos = playerObj.transform.position.x - 1.5f;
+            while (playerObj.transform.position.x >= targetXPos)
+            {
+                print("실행");
+                playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos - 0.5f, -3.8f, 0), 0.005f);
+                yield return null;
+            }
+            playerObj.transform.position = new Vector3(targetXPos, -3.8f, 0);
+            ReMoving();
+        }
+    }
+    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) //드래그 시 처음 한번 호출
+    {
+        StartCoroutine(Moving());
     }
 
-    public void OnDrag(PointerEventData eventData) //드래그하는 동안 호출
+    void IDragHandler.OnDrag(PointerEventData eventData) //드래그하는 동안 호출
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    public void OnEndDrag(PointerEventData eventData) //드래그 종료 시 한번 호출
+    void IEndDragHandler.OnEndDrag(PointerEventData eventData) //드래그 종료 시 한번 호출
     {
-        throw new System.NotImplementedException();
+
     }
 }
