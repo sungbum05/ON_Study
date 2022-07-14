@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int MaxHp = 100;
+
     [SerializeField] private int hp; // 프로퍼티지만 확인하기 위해
     public int HP
     {
@@ -29,13 +31,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerSetting();
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerMove();
+    }
+
+    void PlayerSetting()
+    {
+        HP = MaxHp;
     }
 
     void PlayerMove()
