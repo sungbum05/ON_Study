@@ -29,7 +29,7 @@ public class Monster : MonoBehaviour
                 Debug.Log("Die");
         }
     }
-
+    [SerializeField] protected DodgeGameManager gameManager;
     [SerializeField] private EnemyTierList EnemyTier;
 
     [SerializeField] protected GameObject EnemyBullet;
@@ -45,6 +45,7 @@ public class Monster : MonoBehaviour
 
     protected virtual void UnitSetting()
     {
+        gameManager = GameObject.FindObjectOfType<DodgeGameManager>();
         HP = 100 / (int)EnemyTier;
         AttackPower = 100 / (int)EnemyTier;
 
