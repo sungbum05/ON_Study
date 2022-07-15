@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BasicTrap : MonoBehaviour
 {
-    [SerializeField] private float Speed;
-    [SerializeField] private float Damage;
-    [SerializeField] private GameObject managerObj;
+    [SerializeField] protected float Speed;
+    [SerializeField] protected float Damage;
+    [SerializeField] protected GameObject managerObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,15 +14,15 @@ public class BasicTrap : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         Moving();
     }
-    private void Moving()
+    protected virtual void Moving()
     {
         transform.position -= new Vector3(0, Speed * Time.deltaTime, 0);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

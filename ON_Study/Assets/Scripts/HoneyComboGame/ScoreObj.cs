@@ -7,10 +7,10 @@ public class ScoreObj : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float score;
     [SerializeField] private GameObject managerObj;
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
