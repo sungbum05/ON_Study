@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image HpBarImage;
     [SerializeField] Player Player;
     [SerializeField] Text ScoreTxt;
-    [SerializeField] float Score;
+
+    [SerializeField] DodgeGameManager DodgeGameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,6 @@ public class UIManager : MonoBehaviour
     {
         HpBarImage.fillAmount = (float)Player.HP / (float)Player.MaxHp;
 
-        ScoreTxt.text = $"Score : {(int)Score}";
-        Score += Time.deltaTime * 100;
+        ScoreTxt.text = $"Score : {(int)DodgeGameManager.Score}";
     }
 }
