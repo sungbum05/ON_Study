@@ -22,13 +22,15 @@ public class SpinMonster : Monster
     protected override void Awake()
     {
         base.Awake();
+
+        StartCoroutine(TurnSpinDir());
     }
 
-    protected override IEnumerator AttckPatton()
+    protected override IEnumerator AttckPatton()  //적 회전 및 공격 함수 실행
     {
         yield return null;
 
-        while(true)
+        while (true)
         {
             yield return null;
 
@@ -38,6 +40,20 @@ public class SpinMonster : Monster
             this.gameObject.transform.rotation = RotationValue;
 
             FireBullet();
+
+            AttackNumber = ((int)gameManager.Score / 2500) + 1;
+        }
+    }
+
+    IEnumerator TurnSpinDir()
+    {
+        yield return null;
+
+        while(true)
+        {
+            SpinDir = SpinDir == SpinDirection.Left ? SpinDirection.Right : SpinDirection.Left;
+
+            yield return new WaitForSeconds(Random.Range(5.0f, 10.0f));
         }
     }
 
@@ -48,18 +64,18 @@ public class SpinMonster : Monster
         AttackPower = 10;
     }
 
-    void FireBullet()
+    void FireBullet() // 적 회전값에 따라 총 발사
     {
         int AttackAngle = 0;
         CurAttakDelay -= Time.deltaTime;
 
-        if(CurAttakDelay < 0)
+        if (CurAttakDelay < 0)
         {
             CurAttakDelay = MaxAttakDelay;
 
             for (int i = 0; i < AttackNumber; i++)
             {
-                GameObject Bullet = Instantiate(EnemyBullet, this.gameObject.transform.position, Quaternion.Euler(0, 0, AttackAngle + this.gameObject.transform.eulerAngles.z));
+                GameObject Bullet = Instantiate(EnemyBullet, this.gameObject.transform.position, Quaternion.Euler(0, 0, AttackAngle + this.gameObject.transform.eulerAngles.z)); //총알 각도에 적 회전값 더함
 
                 Bullet.gameObject.GetComponent<Rigidbody2D>().velocity = (Bullet.gameObject.transform.right * 10.0f);
                 Bullet.gameObject.GetComponent<EnemyBullet>().AttackPower = this.AttackPower;
