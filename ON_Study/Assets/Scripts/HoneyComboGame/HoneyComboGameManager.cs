@@ -25,10 +25,13 @@ public class HoneyComboGameManager : MonoBehaviour
     private float nowDistance;
     [SerializeField] private Image[] hpImage;
     [SerializeField] private Text[] texts;
+    [SerializeField] private GameObject player;
+    [SerializeField] private SpriteRenderer sR;
     private bool isHit;
     // Start is called before the first frame update
     void Start()
     {
+        sR = player.GetComponent<SpriteRenderer>();
         maxHp = hp;
     }
 
@@ -48,12 +51,12 @@ public class HoneyComboGameManager : MonoBehaviour
     }
     void TextsSetting()
     {
-        texts[(int)Texts.DistanceText].text = $"{nowDistance} M";
-        texts[(int)Texts.ScoreText].text = $"{score} Á¡";
+        texts[(int)Texts.DistanceText].text = $"{nowDistance:N0} M";
+        texts[(int)Texts.ScoreText].text = $"{score:N0} Á¡";
     }
     public void Hit(float damage)
     {
-        if (!isHit)
+        if (isHit == false)
         {
             hp -= damage;
             isHit = true;
@@ -62,8 +65,9 @@ public class HoneyComboGameManager : MonoBehaviour
     }
     private IEnumerator HitInvincibility()
     {
-
+        sR.color = new Color(1, 1, 1, 0.5f);
         yield return new WaitForSeconds(3f);
+        sR.color = new Color(1, 1, 1, 1f);
         isHit = false;
     }
 }

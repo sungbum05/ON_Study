@@ -219,10 +219,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadSpawnIndex: []
-  SpawnPoint:
-  - {x: -1.5, y: 6, z: 0}
-  - {x: 0, y: 6, z: 0}
-  - {x: 1.5, y: 6, z: 0}
+  loadObjKindIndex: []
+  spawnPoint:
+  - {x: -1.5, y: 7, z: 0}
+  - {x: 0, y: 7, z: 0}
+  - {x: 1.5, y: 7, z: 0}
   Objs:
   - {fileID: 5659898716262828105, guid: ebbb39608c3d83a4d8be58ae92861061, type: 3}
   - {fileID: 8997978924924920441, guid: 97abd378a6458dd45aabb2148cfd8a77, type: 3}
@@ -978,6 +979,8 @@ MonoBehaviour:
   texts:
   - {fileID: 1776572198}
   - {fileID: 928676229}
+  player: {fileID: 1531928388}
+  sR: {fileID: 0}
 --- !u!4 &1593259469
 Transform:
   m_ObjectHideFlags: 0

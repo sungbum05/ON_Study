@@ -60,7 +60,6 @@ public class HoneyComboPlayerDragMove : MonoBehaviour, IBeginDragHandler, IDragH
             targetXPos = playerObj.transform.position.x + 1.5f;
             while (playerObj.transform.position.x <= targetXPos)
             {
-                print("실행");
                 playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos + 0.5f, -3.8f, 0), 0.05f);
                 yield return null;
             }
@@ -73,7 +72,6 @@ public class HoneyComboPlayerDragMove : MonoBehaviour, IBeginDragHandler, IDragH
             targetXPos = playerObj.transform.position.x - 1.5f;
             while (playerObj.transform.position.x >= targetXPos)
             {
-                print("실행");
                 playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos - 0.5f, -3.8f, 0), 0.05f);
                 yield return null;
             }

@@ -10,7 +10,7 @@ public class BasicTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        managerObj = GameObject.Find("HoneyComboGameManager");
     }
 
     // Update is called once per frame
