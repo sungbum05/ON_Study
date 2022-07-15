@@ -16,14 +16,17 @@ public enum MoveCompleatPosition
 }
 
 
-public class HoneyComboPlayer : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class HoneyComboPlayerDragMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private Camera cam;
+    [Tooltip("플레이어 도착 위치 오브젝트")]
     [SerializeField] private Vector3[] playerMovePosition = new Vector3[3];
-    [SerializeField] private Vector3 mousePos;
-    [SerializeField] private Vector3 readyDragMousePos;
+    [Tooltip("마우스 위치 판별")]
+    [SerializeField] private Vector3 mousePos, readyDragMousePos;
+    [Tooltip("플레이어 오브젝트")]
     [SerializeField] private GameObject playerObj;
-    public bool IsMoving;
+    [Tooltip("드래그시 손가락 최소 움직임")]
+    [SerializeField] private float DragMoveLength;
+    private bool IsMoving;
   
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,7 @@ public class HoneyComboPlayer : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         CheckMousePos();
     }
@@ -45,32 +48,33 @@ public class HoneyComboPlayer : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         mousePos = Input.mousePosition;
         if(Input.GetMouseButtonDown(0))
            readyDragMousePos = mousePos;
-        //mousePos = cam.WorldToScreenPoint(mousePos);                  
     }
+        
     private IEnumerator Moving()
     {
         float targetXPos = 0;
-        if (readyDragMousePos.x < mousePos.x && playerObj.transform.position.x != playerMovePosition[(int)PlayerPosition.Right].x && !IsMoving)
+        yield return new WaitForSeconds(0.15f);
+        if (readyDragMousePos.x + DragMoveLength < mousePos.x && playerObj.transform.position.x != playerMovePosition[(int)PlayerPosition.Right].x && !IsMoving)
         {
             IsMoving = true;
             targetXPos = playerObj.transform.position.x + 1.5f;
             while (playerObj.transform.position.x <= targetXPos)
             {
                 print("실행");
-                playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos + 0.5f, -3.8f, 0), 0.005f);
+                playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos + 0.5f, -3.8f, 0), 0.05f);
                 yield return null;
             }
             playerObj.transform.position = new Vector3(targetXPos, -3.8f, 0);
             ReMoving();
         }
-        else if (readyDragMousePos.x > mousePos.x && playerObj.transform.position.x != playerMovePosition[(int)PlayerPosition.Left].x && !IsMoving)
+        else if (readyDragMousePos.x - DragMoveLength > mousePos.x && playerObj.transform.position.x != playerMovePosition[(int)PlayerPosition.Left].x && !IsMoving)
         {
             IsMoving = true;
             targetXPos = playerObj.transform.position.x - 1.5f;
             while (playerObj.transform.position.x >= targetXPos)
             {
                 print("실행");
-                playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos - 0.5f, -3.8f, 0), 0.005f);
+                playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, new Vector3(targetXPos - 0.5f, -3.8f, 0), 0.05f);
                 yield return null;
             }
             playerObj.transform.position = new Vector3(targetXPos, -3.8f, 0);
@@ -84,7 +88,7 @@ public class HoneyComboPlayer : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     void IDragHandler.OnDrag(PointerEventData eventData) //드래그하는 동안 호출
     {
-        
+     
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData) //드래그 종료 시 한번 호출

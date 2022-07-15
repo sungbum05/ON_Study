@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DodgeGameScene.unity
+    guid: b20bef46ac557b245a8e961efcefd848
+  - enabled: 1
+    path: Assets/Scenes/HoneyComboGame.unity
+    guid: acc3962552970ee4c9e53b558304d03a
   m_configObjects: {}
