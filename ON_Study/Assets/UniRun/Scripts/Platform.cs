@@ -11,7 +11,7 @@ public class Platform : MonoBehaviour {
         stepped = false;
 
         // 장애물의 개수 만큼 루프
-        for (int i = 0; i < obstacles.Length; i++)
+        /*for (int i = 0; i < obstacles.Length; i++)
         {
             // 현재 순번의 장애물을 1/3의 확률로 활성화
             if (Random.Range(0, 3) == 0)
@@ -22,7 +22,7 @@ public class Platform : MonoBehaviour {
             {
                 obstacles[i].SetActive(false);
             }
-        }
+        }*/
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
