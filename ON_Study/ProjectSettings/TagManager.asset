@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - ObjDestroy
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2206035585
+    locked: 0
+  - name: Middle
+    uniqueID: 238741821
+    locked: 0
+  - name: Fore
+    uniqueID: 1079344321
     locked: 0
