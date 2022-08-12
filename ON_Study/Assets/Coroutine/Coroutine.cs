@@ -14,7 +14,7 @@ public class Coroutine : MonoBehaviour
     void Start()
     {
         //StartCoroutine(CDelay(2));
-        //StartCoroutine(CTextTyping(Text, "재헌이는 탈모다. 재헌이는 내일 죽는다."));
+        //StartCoroutine(CTextTyping(Text, "용하는 탈모다. 용하는 내일 자빠져 머리박고 웃긴 자세로 모두에게 보여지며 죽는다."));
         StartCoroutine(FadeIn());
     }
 
@@ -23,7 +23,7 @@ public class Coroutine : MonoBehaviour
         CurTime += Time.deltaTime;
         if (CurTime >= Delay)
         {
-            Debug.Log("재헌이 탈모");
+            Debug.Log("용하의 탈모와 머머리에 대한 정의, 용용용");
             CurTime = 0;
         }
     }
@@ -63,7 +63,7 @@ public class Coroutine : MonoBehaviour
         {
             yield return wait;
 
-            Debug.Log("재헌이 탈모");
+            Debug.Log("용하의 탈모와 머머리에 대한 정의, 용용용");
         }
 
     }
@@ -76,12 +76,13 @@ public class Coroutine : MonoBehaviour
         {
             yield return StartCoroutine(CWaitClick());
 
-            Debug.Log("재헌이 탈모");
+            Debug.Log("용하의 탈모와 머머리에 대한 정의, 용용용");
         }
     }
 
     IEnumerator CWaitClick()
     {
+        WaitForSeconds Waits = new WaitForSeconds(0.0005f);
         var wait = new WaitForSeconds(0.005f);
 
         while (true)
